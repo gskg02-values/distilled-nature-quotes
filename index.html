@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nature Distilled | THE UNSAID LENS</title>
+    
+    <meta name="description" content="A premium gallery of 105 nature-distilled reflections.">
+
+    <style>
+        /* ============================================================
+           HEADER 1: COLORS & GLOBAL THEME
+           ============================================================ */
+        :root {
+            --bg-color: #F0E0D0; /* Butterscotch Sand */
+            --accent-color: #6C0000; /* Deep Oxblood */
+            --glass-bg: rgba(255, 255, 255, 0.2); /* Frosted Glass */
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--accent-color);
+            font-family: 'Georgia', serif;
+            margin: 0; padding: 0;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        /* ============================================================
+           HEADER 2: FLOATING NAVIGATION ARROWS
+           ============================================================ */
+        .nav-controls {
+            position: fixed; right: 25px; bottom: 40px;
+            display: flex; flex-direction: column; gap: 15px; z-index: 1000;
+        }
+
+        .nav-btn {
+            width: 45px; height: 45px; border-radius: 50%;
+            border: 1px solid var(--accent-color);
+            background: rgba(240, 224, 208, 0.8);
+            color: var(--accent-color);
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; font-size: 1.2rem; transition: 0.3s ease;
+        }
+
+        .nav-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+
+        /* ============================================================
+           HEADER 3: COVER PAGE & MANTRA
+           ============================================================ */
+        .cover-section {
+            width: 100%; height: 100vh;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            text-align: center; padding: 20px; box-sizing: border-box;
+        }
+
+        .cover-image {
+            max-width: 800px; width: 100%;
+            border: 1px solid var(--accent-color);
+            box-shadow: 0 10px 40px rgba(108, 0, 0, 0.1);
+        }
+
+        .mantra-box { margin-top: 40px; }
+        .mantra-text { font-style: italic; letter-spacing: 2px; opacity: 0.8; margin-bottom: 20px; }
+        .scroll-hint { text-transform: uppercase; font-size: 0.8rem; letter-spacing: 4px; }
+
+        /* ============================================================
+           HEADER 4: QUOTE GALLERY & FADE LOGIC
+           ============================================================ */
+        .gallery-container { width: 90%; max-width: 800px; padding: 100px 0; }
+
+        .quote-card {
+            margin-bottom: 250px; /* High space for focused reflection */
+            padding: 25px;
+            background: var(--glass-bg);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px); /* Premium Glassmorphism */
+            text-align: center;
+
+            /* Initial state for Fading sensor */
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1.5s ease, transform 1.2s ease;
+        }
+
+        .quote-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .quote-card img { width: 100%; height: auto; border-radius: 15px; }
+
+        .share-btn {
+            margin-top: 20px; background: transparent; border: none;
+            color: var(--accent-color); font-family: inherit; font-size: 0.75rem;
+            letter-spacing: 2px; cursor: pointer; text-decoration: underline; opacity: 0.5;
+        }
+        .share-btn:hover { opacity: 1; }
+
+        footer { padding: 80px; text-align: center; font-size: 0.8rem; border-top: 1px solid rgba(108, 0, 0, 0.1); width: 100%; opacity: 0.5; }
+
+        @media (max-width: 600px) {
+            .quote-card { margin-bottom: 150px; padding: 15px; }
+            .nav-controls { right: 15px; bottom: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="top"></div>
+
+    <div class="nav-controls">
+        <a href="#top" class="nav-btn">↑</a>
+        <a href="#bottom" class="nav-btn">↓</a>
+    </div>
+
+    <section class="cover-section">
+        <img src="cover page.jpg" alt="Cover Page" class="cover-image">
+        <div class="mantra-box">
+            <p class="mantra-text">Observe. &nbsp; Pause. &nbsp; Reflect. &nbsp; Internalize.</p>
+            <p class="scroll-hint">Scroll to explore 105 distillations</p>
+        </div>
+    </section>
+
+    <div class="gallery-container">
+        <div class="quote-card" id="q1"><img src="quote1.jpg"><button class="share-btn" onclick="shareIt('q1')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q2"><img src="quote2.jpg"><button class="share-btn" onclick="shareIt('q2')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q3"><img src="quote3.jpg"><button class="share-btn" onclick="shareIt('q3')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q4"><img src="quote4.jpg"><button class="share-btn" onclick="shareIt('q4')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q5"><img src="quote5.jpg"><button class="share-btn" onclick="shareIt('q5')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q6"><img src="quote6.jpg"><button class="share-btn" onclick="shareIt('q6')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q7"><img src="quote7.jpg"><button class="share-btn" onclick="shareIt('q7')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q8"><img src="quote8.jpg"><button class="share-btn" onclick="shareIt('q8')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q9"><img src="quote9.jpg"><button class="share-btn" onclick="shareIt('q9')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q10"><img src="quote10.jpg"><button class="share-btn" onclick="shareIt('q10')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q11"><img src="quote11.jpg"><button class="share-btn" onclick="shareIt('q11')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q12"><img src="quote12.jpg"><button class="share-btn" onclick="shareIt('q12')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q13"><img src="quote13.jpg"><button class="share-btn" onclick="shareIt('q13')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q14"><img src="quote14.jpg"><button class="share-btn" onclick="shareIt('q14')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q15"><img src="quote15.jpg"><button class="share-btn" onclick="shareIt('q15')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q16"><img src="quote16.jpg"><button class="share-btn" onclick="shareIt('q16')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q17"><img src="quote17.jpg"><button class="share-btn" onclick="shareIt('q17')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q18"><img src="quote18.jpg"><button class="share-btn" onclick="shareIt('q18')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q19"><img src="quote19.jpg"><button class="share-btn" onclick="shareIt('q19')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q20"><img src="quote20.jpg"><button class="share-btn" onclick="shareIt('q20')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q21"><img src="quote21.jpg"><button class="share-btn" onclick="shareIt('q21')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q22"><img src="quote22.jpg"><button class="share-btn" onclick="shareIt('q22')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q23"><img src="quote23.jpg"><button class="share-btn" onclick="shareIt('q23')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q24"><img src="quote24.jpg"><button class="share-btn" onclick="shareIt('q24')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q25"><img src="quote25.jpg"><button class="share-btn" onclick="shareIt('q25')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q26"><img src="quote26.jpg"><button class="share-btn" onclick="shareIt('q26')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q27"><img src="quote27.jpg"><button class="share-btn" onclick="shareIt('q27')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q28"><img src="quote28.jpg"><button class="share-btn" onclick="shareIt('q28')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q29"><img src="quote29.jpg"><button class="share-btn" onclick="shareIt('q29')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q30"><img src="quote30.jpg"><button class="share-btn" onclick="shareIt('q30')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q31"><img src="quote31.jpg"><button class="share-btn" onclick="shareIt('q31')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q32"><img src="quote32.jpg"><button class="share-btn" onclick="shareIt('q32')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q33"><img src="quote33.jpg"><button class="share-btn" onclick="shareIt('q33')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q34"><img src="quote34.jpg"><button class="share-btn" onclick="shareIt('q34')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q35"><img src="quote35.jpg"><button class="share-btn" onclick="shareIt('q35')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q36"><img src="quote36.jpg"><button class="share-btn" onclick="shareIt('q36')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q37"><img src="quote37.jpg"><button class="share-btn" onclick="shareIt('q37')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q38"><img src="quote38.jpg"><button class="share-btn" onclick="shareIt('q38')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q39"><img src="quote39.jpg"><button class="share-btn" onclick="shareIt('q39')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q40"><img src="quote40.jpg"><button class="share-btn" onclick="shareIt('q40')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q41"><img src="quote41.jpg"><button class="share-btn" onclick="shareIt('q41')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q42"><img src="quote42.jpg"><button class="share-btn" onclick="shareIt('q42')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q43"><img src="quote43.jpg"><button class="share-btn" onclick="shareIt('q43')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q44"><img src="quote44.jpg"><button class="share-btn" onclick="shareIt('q44')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q45"><img src="quote45.jpg"><button class="share-btn" onclick="shareIt('q45')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q46"><img src="quote46.jpg"><button class="share-btn" onclick="shareIt('q46')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q47"><img src="quote47.jpg"><button class="share-btn" onclick="shareIt('q47')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q48"><img src="quote48.jpg"><button class="share-btn" onclick="shareIt('q48')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q49"><img src="quote49.jpg"><button class="share-btn" onclick="shareIt('q49')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q50"><img src="quote50.jpg"><button class="share-btn" onclick="shareIt('q50')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q51"><img src="quote51.jpg"><button class="share-btn" onclick="shareIt('q51')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q52"><img src="quote52.jpg"><button class="share-btn" onclick="shareIt('q52')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q53"><img src="quote53.jpg"><button class="share-btn" onclick="shareIt('q53')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q54"><img src="quote54.jpg"><button class="share-btn" onclick="shareIt('q54')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q55"><img src="quote55.jpg"><button class="share-btn" onclick="shareIt('q55')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q56"><img src="quote56.jpg"><button class="share-btn" onclick="shareIt('q56')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q57"><img src="quote57.jpg"><button class="share-btn" onclick="shareIt('q57')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q58"><img src="quote58.jpg"><button class="share-btn" onclick="shareIt('q58')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q59"><img src="quote59.jpg"><button class="share-btn" onclick="shareIt('q59')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q60"><img src="quote60.jpg"><button class="share-btn" onclick="shareIt('q60')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q61"><img src="quote61.jpg"><button class="share-btn" onclick="shareIt('q61')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q62"><img src="quote62.jpg"><button class="share-btn" onclick="shareIt('q62')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q63"><img src="quote63.jpg"><button class="share-btn" onclick="shareIt('q63')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q64"><img src="quote64.jpg"><button class="share-btn" onclick="shareIt('q64')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q65"><img src="quote65.jpg"><button class="share-btn" onclick="shareIt('q65')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q66"><img src="quote66.jpg"><button class="share-btn" onclick="shareIt('q66')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q67"><img src="quote67.jpg"><button class="share-btn" onclick="shareIt('q67')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q68"><img src="quote68.jpg"><button class="share-btn" onclick="shareIt('q68')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q69"><img src="quote69.jpg"><button class="share-btn" onclick="shareIt('q69')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q70"><img src="quote70.jpg"><button class="share-btn" onclick="shareIt('q70')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q71"><img src="quote71.jpg"><button class="share-btn" onclick="shareIt('q71')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q72"><img src="quote72.jpg"><button class="share-btn" onclick="shareIt('q72')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q73"><img src="quote73.jpg"><button class="share-btn" onclick="shareIt('q73')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q74"><img src="quote74.jpg"><button class="share-btn" onclick="shareIt('q74')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q75"><img src="quote75.jpg"><button class="share-btn" onclick="shareIt('q75')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q76"><img src="quote76.jpg"><button class="share-btn" onclick="shareIt('q76')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q77"><img src="quote77.jpg"><button class="share-btn" onclick="shareIt('q77')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q78"><img src="quote78.jpg"><button class="share-btn" onclick="shareIt('q78')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q79"><img src="quote79.jpg"><button class="share-btn" onclick="shareIt('q79')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q80"><img src="quote80.jpg"><button class="share-btn" onclick="shareIt('q80')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q81"><img src="quote81.jpg"><button class="share-btn" onclick="shareIt('q81')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q82"><img src="quote82.jpg"><button class="share-btn" onclick="shareIt('q82')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q83"><img src="quote83.jpg"><button class="share-btn" onclick="shareIt('q83')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q84"><img src="quote84.jpg"><button class="share-btn" onclick="shareIt('q84')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q85"><img src="quote85.jpg"><button class="share-btn" onclick="shareIt('q85')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q86"><img src="quote86.jpg"><button class="share-btn" onclick="shareIt('q86')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q87"><img src="quote87.jpg"><button class="share-btn" onclick="shareIt('q87')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q88"><img src="quote88.jpg"><button class="share-btn" onclick="shareIt('q88')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q89"><img src="quote89.jpg"><button class="share-btn" onclick="shareIt('q89')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q90"><img src="quote90.jpg"><button class="share-btn" onclick="shareIt('q90')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q91"><img src="quote91.jpg"><button class="share-btn" onclick="shareIt('q91')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q92"><img src="quote92.jpg"><button class="share-btn" onclick="shareIt('q92')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q93"><img src="quote93.jpg"><button class="share-btn" onclick="shareIt('q93')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q94"><img src="quote94.jpg"><button class="share-btn" onclick="shareIt('q94')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q95"><img src="quote95.jpg"><button class="share-btn" onclick="shareIt('q95')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q96"><img src="quote96.jpg"><button class="share-btn" onclick="shareIt('q96')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q97"><img src="quote97.jpg"><button class="share-btn" onclick="shareIt('q97')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q98"><img src="quote98.jpg"><button class="share-btn" onclick="shareIt('q98')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q99"><img src="quote99.jpg"><button class="share-btn" onclick="shareIt('q99')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q100"><img src="quote100.jpg"><button class="share-btn" onclick="shareIt('q100')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q101"><img src="quote101.jpg"><button class="share-btn" onclick="shareIt('q101')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q102"><img src="quote102.jpg"><button class="share-btn" onclick="shareIt('q102')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q103"><img src="quote103.jpg"><button class="share-btn" onclick="shareIt('q103')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q104"><img src="quote104.jpg"><button class="share-btn" onclick="shareIt('q104')">SHARE THOUGHT</button></div>
+        <div class="quote-card" id="q105"><img src="quote105.jpg"><button class="share-btn" onclick="shareIt('q105')">SHARE THOUGHT</button></div>
+    </div>
+
+    <div id="bottom"></div>
+    <footer>
+        2026 | THE UNSAID LENS | Nature-Distilled Logic
+    </footer>
+
+    <script>
+        // 1. FADE SENSOR (Intersection Observer)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                } else {
+                    entry.target.classList.remove('is-visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.quote-card').forEach(card => observer.observe(card));
+
+        // 2. SHARE LOGIC (Let it Spread)
+        async function shareIt(id) {
+            const shareData = {
+                title: 'Nature Distilled Reflection',
+                text: 'Thought-provoking value from THE UNSAID LENS.',
+                url: window.location.href.split('#')[0] + '#' + id
+            };
+            try {
+                if (navigator.share) {
+                    await navigator.share(shareData);
+                } else {
+                    await navigator.clipboard.writeText(shareData.url);
+                    alert("Thought Link copied to clipboard.");
+                }
+            } catch (err) { console.log(err); }
+        }
+    </script>
+
+</body>
+</html>
